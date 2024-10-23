@@ -8,38 +8,52 @@ For a set of publications, determine the (1) number of collaborators and (2) col
 ```
 PROGRAM collabNum:  
 
-Open dataset.csv  
-Read column authorName
-Create column collabNum
-Set position to 0  
+OPEN dataset.csv  
+READ column numberOfAuthors
+CREATE column collabNum
+SET position to 0  
 
 WHILE (position < length - 1)  
-    if (author_count == 1)
-        set collabNum[position] to "solo"
-        set position to position + 1 
-    elseif (author_count == 2)
-        set collabNum[position] to "pair"
-        set position to position + 1
-    else
-        set collabNum[position] to "group"
-        set position to position +1
+    IF (numberOfAuthors == 1)
+        SET collabNum[position] to "individual"
+        SET position to position + 1 
+    ELSEIF (numberOfAuthors == 2)
+        SET collabNum[position] to "pair"
+        SET position to position + 1
+    ELSE
+        SET collabNum[position] to "group"
+        SET position to position + 1
+
+Return dataset
 ```
 
 ### Task 2 Code
 ```
 PROGRAM collabType:
 
-Read column collabNum
-Read column authorAffiliation
-Read column authorCountry
-Create column collabType
-Set position to 0
+OPEN dataset.csv
+READ column numberOfAuthors
+READ column author
+CREATE column collabType
+SET position to 0
 
 WHILE (position < length - 1)
-    if (collabNum == "solo")
-        set collabType[position] to "solo"
-        set position to position +1
-    elseif (collabNum == "pair")
-        if ()
+    IF (numberOfAuthors > 1)
+        SEPARATE authors at deliminator
+        FOR each author
+            SEPARATE affiliation at deliminator
+            SEPARATE country at deliminator
+            IF (all authors have the same country)
+                IF (all authors have the same affiliation)
+                    SET collabType to "local"
+                ELSE
+                    SET collabType to "national"
+            ELSE
+                SET collabType to "international"
+        SET position to position + 1
+    ELSE
+        SET collabType to "individual"
+        SET position to position + 1
 
+Return dataset
 ```
