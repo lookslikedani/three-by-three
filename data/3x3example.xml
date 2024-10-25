@@ -1,31 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE collection [
-    <!ELEMENT collection (publication+)>
-        <!ELEMENT publication (PID, authorList, title, journal, volume, issue, startPage, endPage, year, doi, keywords, abstract*)>
-            <!ELEMENT PID (#PCDATA)>
-            <!ELEMENT authorList (author+)>
-                <!ELEMENT author (lastName, firstName, affiliations)>
-                    <!ATTLIST author ORCID CDATA #IMPLIED>
-                    <!ELEMENT lastName (#PCDATA)>
-                    <!ELEMENT firstName (#PCDATA)>
-                    <!ELEMENT affiliations (affiliation+)>
-                        <!ELEMENT affiliation (organisation, country)>
-                            <!ELEMENT organisation (#PCDATA)>
-                            <!ELEMENT country (#PCDATA)>
-            <!ELEMENT title (#PCDATA)>
-            <!ELEMENT journal (#PCDATA)>
-            <!ELEMENT volume ANY>
-            <!ELEMENT issue ANY>
-            <!ELEMENT startPage ANY>
-            <!ELEMENT endPage ANY>
-            <!ELEMENT year (#PCDATA)>
-            <!ELEMENT doi ANY>
-            <!ELEMENT keywords (keyword*)>
-                <!ELEMENT keyword (#PCDATA)>
-            <!ELEMENT abstract (#PCDATA)>
-
-]>
+<!DOCTYPE collection SYSTEM "xml-dtd.dtd">
 
 <collection>
     <publication>
