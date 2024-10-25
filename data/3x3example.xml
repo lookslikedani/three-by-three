@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE collection [
+    <!ELEMENT collection (publication+)>
+        <!ELEMENT publication (PID, authorList, title, journal, volume, issue, startPage, endPage, year, doi, keywords, abstract*)>
+            <!ELEMENT PID (#PCDATA)>
+            <!ELEMENT authorList (author+)>
+                <!ELEMENT author (lastName, firstName, affiliations)>
+                    <!ATTLIST author ORCID CDATA #IMPLIED>
+                    <!ELEMENT lastName (#PCDATA)>
+                    <!ELEMENT firstName (#PCDATA)>
+                    <!ELEMENT affiliations (affiliation+)>
+                        <!ELEMENT affiliation (organisation, country)>
+                            <!ELEMENT organisation (#PCDATA)>
+                            <!ELEMENT country (#PCDATA)>
+            <!ELEMENT title (#PCDATA)>
+            <!ELEMENT journal (#PCDATA)>
+            <!ELEMENT volume ANY>
+            <!ELEMENT issue ANY>
+            <!ELEMENT startPage ANY>
+            <!ELEMENT endPage ANY>
+            <!ELEMENT year (#PCDATA)>
+            <!ELEMENT doi ANY>
+            <!ELEMENT keywords (keyword*)>
+                <!ELEMENT keyword (#PCDATA)>
+            <!ELEMENT abstract (#PCDATA)>
+
+]>
+
+<collection>
+    <publication>
+        <PID>1633175</PID>
+        <authorList>
+            <author>
+                <lastName>Foderaro</lastName>
+                <firstName>Antonella</firstName>
+                <affiliations>
+                    <affiliation>
+                        <organisation>Högskolan i Borås</organisation>
+                        <country>Sweden</country>
+                    </affiliation>
+                </affiliations>
+            </author>
+            <author ORCID="0000-0003-0659-4754">
+                <lastName>Gunnarsson Lorentzen</lastName>
+                <firstName>David</firstName>
+                <affiliations>
+                    <affiliation>
+                        <organisation>Högskolan i Borås</organisation>
+                        <country>Sweden</country>
+                    </affiliation>
+                </affiliations>
+            </author>
+        </authorList>
+        <title>Argumentative practices and patterns in debating climate change on Twitter</title>
+        <journal>Aslib Journal of Information Management</journal>
+        <volume>75</volume>
+        <issue>1</issue>
+        <startPage>131</startPage>
+        <endPage>148</endPage>
+        <year>2023</year>
+        <doi>10.1108/AJIM-06-2021-0164</doi>
+        <keywords> 
+            <keyword>Argumentation practices</keyword>
+            <keyword>Argumentation patterns</keyword>
+            <keyword>Argumentation theory</keyword>
+            <keyword>Linking practices</keyword>
+            <keyword>Climate change</keyword>
+            <keyword>Twitter conversations</keyword>
+        </keywords>
+        <abstract>Purpose: The purpose of this paper is to investigate practices of argumentation on Twitter discussions about climate change.Design/methodology/approach: Conversational threads were collected from the Twitter API. Fundamental concepts from argumentation theory and linking practices were operationalised through a coding schema for content analysis. Tweets were analysed in the context of the discussions and coded according to their argumentative approach, interaction type and argumentation stage. Linked and embedded sources were analysed in order to find how they were used in arguments, the plausibility and soundness of the message, the consistency and trustworthiness of the linked source and its adequacy with the target audience.Findings: Among the interactions between arguers, this study found five typical practices and several patterns involving the dynamics of the conversations, the strategy of the argumentation and the linking practices. Although the rhetorical approach was prominent, the agreement was rarely achieved. The arguers used a variety of sources to justify or support their positions, often embedding non-textual content. These linking practices, together with the strategy adopted and the topics discussed, suggest the involvement of a multiple audience engaged in discussing ad lib scientific artefacts, topics and outputs.Originality/value: While Twitter has been the focus for many research papers, the conversational threads have been given little attention so far. With the Twitter API making conversations more accessible for research, this paper does not only give insight into multiple audience group argumentation dynamics but also provides a method to study the conversations from an argumentation theory perspective.</abstract>
+    </publication>
+</collection>
