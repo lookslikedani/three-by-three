@@ -3,8 +3,7 @@
 <!DOCTYPE collection SYSTEM "xml-dtd.dtd">
 
 <collection>
-    <publication>
-        <PID>1633175</PID>
+    <publication PID="1633175">
         <authorList>
             <author>
                 <lastName>Foderaro</lastName>

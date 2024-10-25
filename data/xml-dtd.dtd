@@ -1,6 +1,6 @@
 <!ELEMENT collection (publication+)>
-    <!ELEMENT publication (PID, authorList, title, journal, volume, issue, startPage, endPage, year, doi, keywords, abstract*)>
-        <!ELEMENT PID (#PCDATA)>
+    <!ELEMENT publication (authorList, title, journal, volume, issue, startPage, endPage, year, doi, keywords, abstract*)>
+        <!ATTLIST publication PID CDATA #REQUIRED>
         <!ELEMENT authorList (author+)>
             <!ELEMENT author (lastName, firstName, affiliations)>
                 <!ATTLIST author ORCID CDATA #IMPLIED>
