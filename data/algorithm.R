@@ -25,43 +25,48 @@ ds_t1 <- ds %>% mutate(
 
 # Task 2 ----
 ds_t2_prep <- ds_t1 %>%
-  #separates the authors, creating a new row for each one
+  # Separate author column and create a new row for each author
   separate_longer_delim(Name, delim = ";") %>%
 
-  #separates the author info from the affiliation info
+  # Separate author and affiliation
   separate_wider_delim(Name, delim = ", (", names = c("authorNameID", "affiliation"), too_few = "align_start", too_many = "merge") %>% #need to add code for multiple affiliations
 
-  #separates affiliation into organization and country columns
+  # Separate affiliation into organization and country
   separate_wider_delim(affiliation, delim = ", ", names = c("organization", "country"), too_few = "align_start", too_many = "merge") %>%
 
-  #removes extra ) from initial formatting
+  # Remove extra ) from initial formatting
   mutate(country = str_remove_all(country, "\\)"))
 
 
 ds_t2_compare <- ds_t2_prep %>%
-  #adds authors column with combined authorName, organization, and country
+  # Add authors column combining authorName, organization, and country data
   mutate(
     authors = str_glue_data(ds_t2_prep, "{authorNameID}, ({organization}, {country})"),
     .before = "authorNameID"
   ) %>%
 
-  #groups rows by PID, determining collaboration type by each article
+  # Group rows by PID to determine collaboration type for each article
   group_by(PID) %>%
 
-  #adds column for collaboration type & assigns collaboration type
+  # Add column for collaboration type & assign collaboration type:
+  ## NA for individually authored publications
+  ## local if all authors share organization
+  ## national if all authors share country
+  ## international if no shared organization or country
   mutate(
     collabType =
-      if_else(NumberOfAuthors == 1, NA, # collaboration type is NA for individual authored publications
+      if_else(NumberOfAuthors == 1, NA,
         case_when(
-          n_distinct(organization) == 1 ~ "local", # assigns local type if all authors share organization
-          n_distinct(country) == 1 ~ "national", # assigns national type if all authors share country
-          .default = "international" # assigns international type if no shared organization or country
+          n_distinct(organization) == 1 ~ "local",
+          n_distinct(country) == 1 ~ "national",
+          .default = "international"
         )
       ),
     .before = "collabNum"
   ) %>%
 
-  #combines separate author rows back into single row per publication
+  # Combine author rows back into single row per publication
+  # Discard temporary columns & duplicate rows
   mutate(
     authors = str_flatten(authors, collapse = "; ")
   ) %>%
