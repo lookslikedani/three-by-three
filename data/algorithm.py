@@ -25,9 +25,7 @@ for x in ds_t1.index:
     else:
         ds_t1.loc[x, "collabNum"] = "group"
 
-#print(ds_t1)
-#print(ds_t1.dtypes)
-
+print(ds_t1)
 # End Task 1
 
 # Task 2
@@ -35,15 +33,11 @@ task2 = ds_t1.take([0,2], axis=1)
 
 task2 = task2.join(task2["Name"].str.split(";", expand=True))
 
-#print(task2)
-
 task2melt = task2.melt(id_vars=["PID","Name"], var_name="AuNum", value_name="Author", ignore_index=False)
 
 task2melt[["Author_ID","affiliation"]] = task2melt["Author"].str.split(", \\(", expand=True)
 task2melt["affiliation"] = task2melt["affiliation"].str.strip("\\)")
 task2melt[["organization","country"]] = task2melt["affiliation"].str.split(",", expand=True)
-
-#print(task2melt)
 
 task2grouped = task2melt.groupby("PID", as_index=False).nunique().take([0,4,6,7], axis=1)
 
@@ -58,13 +52,9 @@ for x in task2grouped.index:
     else:
         task2grouped.loc[x, "collabType"] = "international"
 
-#print(task2grouped)
-
 ds_t2 = task2grouped.take([0,1], axis = 1)
 
 result = pd.merge(ds_t1, ds_t2, on="PID")
 result.insert(1, "collabType", result.pop("collabType"))
 print(result.take([0,1,2], axis=1))
-
-
 # End Task 2
